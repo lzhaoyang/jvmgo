@@ -53,6 +53,14 @@ func parseCmd() *Cmd {
 		cmd.class = args[0]
 		cmd.args = args[1:]
 	}
+
+	//判断cp参数是否为空，如果为空，就去找CLASSPATH 环境变量值，没有就不赋值
+	if cmd.cpOption == "" {
+		getenv := os.Getenv("CLASSPATH")
+		if getenv != "" {
+			cmd.cpOption = getenv
+		}
+	}
 	return cmd
 
 }
