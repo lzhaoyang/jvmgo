@@ -27,7 +27,8 @@ func newDirEntry(path string) *DirEntry {
 //读取类文件为字节数组
 //注意： 指针接收器与非指针接收器的区别
 func (self *DirEntry) readClass(className string) ([]byte, Entry, error) {
-	//目录+类名
+	//目录+类名(包含java package目录的全限定名)
+	// /opt + java/lang/Object.class
 	fileName := filepath.Join(self.absDir, className)
 	//读取文件为字节
 	fileBytes, err := ioutil.ReadFile(fileName)
@@ -35,6 +36,7 @@ func (self *DirEntry) readClass(className string) ([]byte, Entry, error) {
 }
 
 //实现Entry接口
+//存放class的绝对路径目录
 func (self *DirEntry) String() string {
 	return self.absDir
 }
