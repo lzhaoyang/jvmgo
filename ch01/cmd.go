@@ -65,6 +65,12 @@ func parseCmd() *Cmd {
 
 }
 
+//环境变量获取classpath参数，CLASSPATH环境变量可以被命令行参数覆盖
+//即cli args的优先级更高
+func getEnvValueByKey(key string) (string, error) {
+
+}
+
 func printCmdUsage() {
 	fmt.Printf("Usage: %s [-options] class [args...]\n", os.Args[0])
 }

@@ -26,6 +26,14 @@ javaw 比较适合启动GUI程序，其他的和java是一样的
 
 ```
 
+### 类路径classpath
+一个最简单的java程序都是不能直接运行的，在运行之前需要加载jdk的内容，需要加载一些必要的类。java虚拟机在启动后会去按照搜索的先后顺序
+去加载所需要的类。
+- 启动类路径 bootstrap classpath
+- 扩展类路径 extension classpath
+- 用户类路径 user classpath
+
+
 
 
 
