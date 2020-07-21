@@ -20,6 +20,8 @@ type Cmd struct {
 	helpFlag bool
 	//版本
 	versionFlag bool
+	//jre参数
+	XjreOption string
 	//classpath参数
 	cpOption string
 	//类名
@@ -39,6 +41,8 @@ func parseCmd() *Cmd {
 	flag.BoolVar(&cmd.helpFlag, "?", false, "print help message")
 	//版本提示
 	flag.BoolVar(&cmd.versionFlag, "version", false, "print version and exit")
+	//jre参数
+	flag.StringVar(&cmd.XjreOption, "Xjre", "", "path to jre")
 	//classpath参数
 	flag.StringVar(&cmd.cpOption, "classpath", "", "classpath")
 	flag.StringVar(&cmd.cpOption, "cp", "", "classpath")
@@ -53,7 +57,6 @@ func parseCmd() *Cmd {
 		cmd.class = args[0]
 		cmd.args = args[1:]
 	}
-
 	//判断cp参数是否为空，如果为空，就去找CLASSPATH 环境变量值，没有就不赋值
 	if cmd.cpOption == "" {
 		getenv := os.Getenv("CLASSPATH")
@@ -62,12 +65,6 @@ func parseCmd() *Cmd {
 		}
 	}
 	return cmd
-
-}
-
-//环境变量获取classpath参数，CLASSPATH环境变量可以被命令行参数覆盖
-//即cli args的优先级更高
-func getEnvValueByKey(key string) (string, error) {
 
 }
 
